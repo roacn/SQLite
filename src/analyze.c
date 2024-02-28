@@ -333,7 +333,7 @@ static void sampleSetRowid(sqlite3 *db, StatSample *p, int n, const u8 *pData){
 #ifdef SQLITE_ENABLE_STAT4
 static void sampleSetRowidInt64(sqlite3 *db, StatSample *p, i64 iRowid){
   assert( db!=0 );
-  if( p->nRowid ) sqlite3DbFree(db, p->u.aRowid);
+  if( NEVER(p->nRowid) ) sqlite3DbFree(db, p->u.aRowid);
   p->nRowid = 0;
   p->u.iRowid = iRowid;
 }
